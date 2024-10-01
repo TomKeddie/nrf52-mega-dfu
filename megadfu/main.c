@@ -232,7 +232,8 @@ int main(void) {
 		prx_nvmc_page_erase(eraseAddress);
 	}
 	unsigned char* pFinalizeStart = (unsigned char*)&_binary__build_obj_payload_finalize_bin_start;
-	unsigned int finalizeSize = 0x1000;
+	unsigned char* pFinalizeEnd = (unsigned char*)&_binary__build_obj_payload_finalize_bin_end;
+	unsigned int finalizeSize = (uint32_t)(pFinalizeEnd - pFinalizeStart);
 
 	prx_nvmc_write_words((uint32_t)pPayloadDescriptor->finalize_start, (uint32_t*)pFinalizeStart, finalizeSize / sizeof(uint32_t));
 	// Erase the UICR so that we can be sure that storing the payload addresses in UICR->Customer is safe
