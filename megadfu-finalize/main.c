@@ -4,13 +4,9 @@
 #include <stdlib.h>
 #include "nrf.h"
 
-#include "nrf_drv_uart.h"
-
 #include "prx_nvmc.h"
 #include "LZ4.h"
 
-#define STRINGIZE_DETAIL(x) #x
-#define STRINGIZE(x) STRINGIZE_DETAIL(x)
 
 typedef enum
 {
@@ -189,23 +185,17 @@ void __attribute__ ((noinline)) perform_finalize(PayloadDescriptor_t payloadDesc
 //
 
 int main(void) {
-
-  while(1)
-  	{
-	  const uint8_t data[] = STRINGIZE(__LINE__) "\r\n";
-	  nrf_drv_uart_tx(data, sizeof(data)-1);
-	}
-#if 0
 	uint32_t payload_descriptor_bin_start	= NRF_UICR->CUSTOMER[24];
-
 	PayloadDescriptor_t* pPayloadDescriptor = (PayloadDescriptor_t*)payload_descriptor_bin_start;
 	perform_finalize(*pPayloadDescriptor);
 	
+	// DONE!
+
 	// Wait for WDT, as it will be running with the OEM bootloader's configuration
 	// and the only way to stop/clear it is to reset due to WDT.
 	while (1) {
 		// Do nothing
 	}
-#endif
+
 	return 0;
 }

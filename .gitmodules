@@ -2,6 +2,3 @@
 	path = pc-nrfutil
 	url = https://github.com/NordicSemiconductor/pc-nrfutil.git
 	branch = 0_5_3
-[submodule "libtrace"]
-	path = libtrace
-	url = git@github.com:orbcode/libtrace.git
