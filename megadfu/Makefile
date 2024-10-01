@@ -195,6 +195,14 @@ $(OBJECT_DIRECTORY)/payload_descriptor.bin:
 	@echo Payload file 1/2: $(notdir $<) 
 	$(NO_ECHO)python3 struct_builder.py -o $@ -v $(FINALIZE_START) $(SOFTDEVICE_START) $(BOOTLOADER_START) $(SETTINGS_START) $(APPLICATION_START)
 
+# When I was RE the DFU process, I was never able to go straight from
+# a bootloader hex file to what was actually written to flash, IIRC
+# due to the DFU signing/settings process making changes to the
+# bootloader and/or tacking on extra information. The workaround was
+# to take the sd_bl.bin file, which is what is written to flash, cut
+# off the softdevice portion at the start, and take the rest as the
+# bootloader. To trim the SD off, I convert the SD hex file to a bin,
+# and use that to pass to binsplit.py along with sd_bl.bin.
 $(OBJECT_DIRECTORY)/payload_softdevice.bin: $(SOFTDEVICE_PAYLOAD_SOURCE_FILE)
 	@echo Payload file 1/3: $(notdir $<) 
 	$(NO_ECHO)$(OBJCOPY) -I ihex -O binary -B arm --gap-fill 0xFF $< $@
