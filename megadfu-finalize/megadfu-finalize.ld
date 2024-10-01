@@ -6,7 +6,7 @@ GROUP(-lgcc -lc -lnosys)
 
 MEMORY
 {
-  FLASH (rx) : ORIGIN = 0x75000, LENGTH = 0x1000 /* must end before the bootloader */
+  FLASH (rx) : ORIGIN = 0x77000, LENGTH = 0x1000 /* must end before the bootloader */
   RAM (rwx) :  ORIGIN = 0x20002080, LENGTH = 0xdf80
 }
 

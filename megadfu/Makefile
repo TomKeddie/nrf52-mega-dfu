@@ -42,12 +42,12 @@ remduplicates = $(strip $(if $1,$(firstword $1) $(call remduplicates,$(filter-ou
 # Payloads to convert to embed in the binary
 FINALIZE_PAYLOAD_SOURCE_FILE  	= $(abspath ../megadfu-finalize/_build/megadfu-finalize.bin)
 # Must match megadfu-finalize linker script
-FINALIZE_START                	= 0x75000
-SOFTDEVICE_PAYLOAD_SOURCE_FILE  = $(abspath s132_nrf52_6.1.1_softdevice.hex)
+FINALIZE_START                	= 0x77000
+SOFTDEVICE_PAYLOAD_SOURCE_FILE  = $(abspath s132_nrf52_7.2.0_softdevice.hex)
 SOFTDEVICE_START                = 0x0
 BOOTLOADER_PAYLOAD_SOURCE_FILE  = $(abspath sd_bl.bin)
 # Must match bootloader linker script
-BOOTLOADER_START                = 0x76000
+BOOTLOADER_START                = 0x78000
 SETTINGS_PAYLOAD_SOURCE_FILE    = $(abspath bootloader_setting.hex)
 SETTINGS_START                  = 0x7E000
 #APPLICATION_PAYLOAD_SOURCE_FILE = $(abspath firmware.hex)
