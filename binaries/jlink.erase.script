@@ -3,6 +3,4 @@ speed 4000
 selectinterface SWD
 connect NRF52832_XXAA S 4000
 erase
-loadfile ID130C_596.hex
-reset
 quit
